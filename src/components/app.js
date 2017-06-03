@@ -5,18 +5,14 @@ import { Router } from 'preact-router';
 
 import reducers from '../lib/reducers';
 import initialState from '../lib/initState';
-import { addChatLine } from '../lib/actions/chat';
+import { addChatLine, deleteChatLine } from '../lib/actions/chat';
+import { addUser, deleteUser } from '../lib/actions/user';
 
 import Header from './header';
 import Home from './home';
 import Profile from './profile';
 
 let store = createStore(reducers, initialState);
-
-store.dispatch(addChatLine(1, Math.floor(Date.now() / 1000), 'Hello everyone!'));
-
-console.log(store.getState(), '???');
-console.log('hi');
 
 export default class App extends Component {
 	/** Gets fired when the route changes.

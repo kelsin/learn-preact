@@ -210,7 +210,7 @@ module.exports = {
 		open: true,
 		proxy: {
 			'/api/**': {
-				'target': 'http://192.168.13.107:4000/',
+				'target': 'http://localhost:4000/',
 				pathRewrite: path => path.replace(/^\/[^\/]+\//, '')
 			}
 			// OPTIONAL: proxy configuration:

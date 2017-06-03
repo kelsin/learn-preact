@@ -1,15 +1,28 @@
 const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const http = require('http').Server(app, {});
+const io = require('socket.io')(http, {origins: '*'});
+const cors = require('cors');
 
 const port = process.env.PORT || 3000;
-const host = process.env.HOST || '0.0.0.0';
+const host = process.env.HOST || 'localhost';
 
-if (typeof io.origins === 'function') {
-	io.origins('*:*');
-} else {
-	io.set('origins', '*:*');
-}
+// app.use(cors());
+
+// app.use((req, res, next) => {
+// 	res.setHeader('Access-Control-Allow-Headers', 'http://localhost:8080');
+// 	next();
+// });
+
+// io.origins('*:*');
+
+app.use(function(req, res, next) {
+	var origin = req.get('origin'); 
+	console.log(origin);
+	res.header('Access-Control-Allow-Origin', origin);
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+	next();
+});
 
 app.get('/', (req, res) => {
 	res.send('Hello, world!');

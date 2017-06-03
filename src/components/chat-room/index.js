@@ -2,17 +2,13 @@ import { h, Component } from 'preact';
 import style from './style.less';
 import clone from 'lodash/clone';
 
-export default class ChatMessages extends Component {
-	constructor() {
-		super();
+export default class ChatRoom extends Component {
+	render() {
+		let chatroom = this.props.chatrooms.find((room) =>
+			(room.id === this.props.chatroomId)
+		);
 
-		this.state = {
-			messages: []
-		}
-	}
-
-	render(props, state) {
-		let messageJsx = state.messages.map((msg) => {
+		let messageJsx = chatroom.chat.map((msg) => {
 			return (
 				<div class={style.message}>
 					<div class={style.sender}>{msg.sender}</div>

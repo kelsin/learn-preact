@@ -18,18 +18,16 @@ export default class ChatInput extends Component {
 		this.setState({
 			msg: event.target.value
 		});
-		console.log('INPUT CHANGE', this.state);
 	}
 
 	send() {
-		// TODO: call reducer instead and have the redux store send the socket message
-		SocketClient.sendMessage(this.state.msg);
+		this.props.addChatLine(this.props.chatroomId, this.props.userId, new Date(), this.state.msg);
 	}
 
-	render(props, state) {
+	render() {
 		return (
 			<div class={style.container}>
-				<input type='text' class={style.input} value={state.msg} onInput={this.inputChange} />
+				<input type='text' class={style.input} value={this.state.msg} onInput={this.inputChange} />
 				<button type='button' class={style.button} onClick={this.send}>Send</button>
 			</div>
 		);

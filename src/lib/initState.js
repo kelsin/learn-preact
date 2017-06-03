@@ -4,8 +4,6 @@ let chatroomId = Guid.create().value;
 let userId = Guid.create().value;
 
 export default {
-	chatroomId,
-	userId,
 	chatrooms: [
 		{
 			name: 'Preact Stuff',
@@ -14,5 +12,9 @@ export default {
 			userIds: [userId]
 		}
 	],
-	users: [{username: "default", id: userId}]
+	users: [{username: "default", id: userId}],
+	context: {
+		chatroomId,
+		userId
+	}
 };

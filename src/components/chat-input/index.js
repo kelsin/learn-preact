@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import SocketClient from '../../lib/SocketClient';
 import style from './style.less';
+import moment from 'moment';
 
 export default class ChatInput extends Component {
 	constructor() {
@@ -21,7 +22,7 @@ export default class ChatInput extends Component {
 	}
 
 	send() {
-		this.props.addChatLine(this.props.chatroomId, this.props.userId, new Date(), this.state.msg);
+		this.props.addChatLine(this.props.chatroomId, this.props.userId, moment(new Date()).format('MMMM Do YYYY, h:mm:ss a'), this.state.msg);
 		this.setState({
 			msg: ''
 		});

@@ -73,6 +73,7 @@
     "less": "^2.7.1",
     "less-loader": "^4.0.3",
     "mkdirp": "^0.5.1",
+    "moment": "^2.18.1",
     "ncp": "^2.0.0",
     "offline-plugin": "^4.7.0",
     "postcss-loader": "^2.0.3",

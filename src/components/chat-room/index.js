@@ -16,7 +16,7 @@ export default class ChatRoom extends Component {
 				<div class={style.message}>
 					<div class={style.sender}>{this.getUsername(msg.sender)}</div>
 					<div class={style.body}>{msg.body}</div>
-					<div class={style.timestamp}>{msg.timestamp.getTime()}</div>
+					<div class={style.timestamp}>{msg.timestamp}</div>
 				</div>
 			)
 		});

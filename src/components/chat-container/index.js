@@ -12,7 +12,7 @@ class ChatContainer extends Component {
 		return (
 			<div class={style.container}>
 				<div class={style.messagesContainer}>
-					<ChatRoom chatroomId={this.props.defaultChatroom} chatrooms={this.props.chatrooms}/>
+					<ChatRoom chatroomId={this.props.defaultChatroom} users={this.props.users} chatrooms={this.props.chatrooms}/>
 				</div>
 				<div class={style.inputContainer}>
 					<ChatInput addChatLine={this.props.addChatLine} chatroomId={this.props.defaultChatroom} userId={this.props.defaultUser}/>
@@ -26,6 +26,7 @@ const mapStateToProps = (state) => {
 	console.log(state);
 	return {
 		chatrooms: state.chatrooms,
+		users: state.users,
 		defaultChatroom: state.context.chatroomId,
 		defaultUser: state.context.userId
 	};

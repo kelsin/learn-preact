@@ -12,7 +12,7 @@ export default {
 			userIds: [userId]
 		}
 	],
-	users: [{username: "default", id: userId}],
+	users: [{username: "beautifully default", id: userId}],
 	context: {
 		chatroomId,
 		userId

@@ -22,6 +22,9 @@ export default class ChatInput extends Component {
 
 	send() {
 		this.props.addChatLine(this.props.chatroomId, this.props.userId, new Date(), this.state.msg);
+		this.setState({
+			msg: ''
+		});
 	}
 
 	render() {

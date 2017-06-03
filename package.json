@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
     "start": "serve build -s -c 1",
+    "serve": "PORT=4000 nodemon api/index.js",
     "prestart": "npm run build",
     "build": "cross-env NODE_ENV=production webpack -p --progress",
     "prebuild": "mkdirp build && ncp src/assets build/assets",
@@ -91,14 +92,17 @@
     "webpack-dev-server": "^2.4.4"
   },
   "dependencies": {
+    "express": "^4.15.2",
     "lodash": "^4.17.4",
+    "nodemon": "^1.11.0",
     "preact": "^8.1.0",
     "preact-compat": "^3.15.0",
     "preact-render-to-string": "^3.6.0",
     "preact-router": "^2.5.1",
     "promise-polyfill": "^6.0.2",
     "proptypes": "^1.0.0",
-    "serve": "^5.1.4"
+    "serve": "^5.1.4",
+    "socket.io": "^2.0.2"
   },
   "main": "webpack.config.babel.js",
   "directories": {

@@ -4,6 +4,7 @@ import style from './style.less';
 
 import {addChatLine} from '../../lib/actions/chat';
 
+import UsernameInput from '../username-input';
 import ChatRoom from '../chat-room';
 import ChatInput from '../chat-input';
 
@@ -11,6 +12,9 @@ class ChatContainer extends Component {
 	render() {
 		return (
 			<div class={style.container}>
+				<div>
+					<UsernameInput />
+				</div>
 				<div class={style.messagesContainer}>
 					<ChatRoom chatroomId={this.props.defaultChatroom} users={this.props.users} chatrooms={this.props.chatrooms}/>
 				</div>

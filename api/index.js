@@ -10,16 +10,18 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', socket => {
-	console.log('a user connected');
+	socket.broadcast.emit('join');
 
 	socket.on('disconnect', () => {
-		console.log('user disconnected');
+		socket.broadcast.emit('disconnect');
 	});
 
 	socket.on('chat message', msg => {
-		console.log('message: ' + msg);
+		io.emit('chat message', msg);
 	});
 });
+
+
 
 app.listen(port, '0.0.0.0', (err) => {
 	if (err) {

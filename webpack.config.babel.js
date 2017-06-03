@@ -203,7 +203,7 @@ module.exports = {
 
 	devServer: {
 		port: process.env.PORT || 8080,
-		host: 'localhost',
+		host: '192.168.13.107',
 		publicPath: '/',
 		contentBase: './src',
 		historyApiFallback: true,

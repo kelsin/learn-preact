@@ -28,16 +28,16 @@ export default class ChatMessages extends Component {
 	render(props, state) {
 		let messageJsx = state.messages.map((msg) => {
 			return (
-				<div class={style.msgContainer}>
+				<div class={style.message}>
 					<div class={style.sender}>{msg.sender}</div>
 					<div class={style.body}>{msg.body}</div>
-					<div class={style.timestamp}>{msg.timestamp}</div>
+					<div class={style.timestamp}>{msg.timestamp.getTime()}</div>
 				</div>
 			)
 		});
 
 		return (
-			<div class={style.chatMessages}>
+			<div class={style.container}>
 				{messageJsx}
 			</div>
 		);

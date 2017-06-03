@@ -7,9 +7,13 @@ import ChatInput from '../chat-input';
 export default class ChatContainer extends Component {
 	render() {
 		return (
-			<div class={style.chatContainer}>
-				<ChatMessages />
-				<ChatInput />
+			<div class={style.container}>
+				<div class={style.messagesContainer}>
+					<ChatMessages />
+				</div>
+				<div class={style.inputContainer}>
+					<ChatInput />
+				</div>
 			</div>
 		);
 	}

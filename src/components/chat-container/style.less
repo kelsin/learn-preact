@@ -1,7 +1,24 @@
 @import '~style/helpers';
 
-.chatContainer {
-	padding: 56px 20px;
-	min-height: 100%;
-	width: 100%;
+.container {
+	position: relative;
+	height: 100vh;
+	max-height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid #ccc;
+}
+
+.messagesContainer {
+	position: relative;
+	padding: 20px;
+	flex: 1;
+	border-bottom: 2px solid #ccc;
+}
+
+.inputContainer {
+	position: relative;
+	padding: 20px;
+	flex: 0 0 80px;
 }

@@ -23,8 +23,7 @@ export default class App extends Component {
 		return (
 			<Provider store={store}>
 				<div id="app">
-						<Header />
-						<ChatContainer />
+					<ChatContainer />
 				</div>
 			</Provider>
 		);

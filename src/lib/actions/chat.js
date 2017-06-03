@@ -4,7 +4,7 @@ import * as Guid from 'guid';
 function addChatLine(chatroomId, sender, timestamp, body) {
 	return {
 		type: ADD_CHAT_LINE,
-		chatroomID,
+		chatroomId,
 		sender,
 		timestamp,
 		body,

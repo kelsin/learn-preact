@@ -1,0 +1,3 @@
+const ADD_CHAT_LINE = 'ADD_CHAT_LINE';
+
+export {ADD_CHAT_LINE};

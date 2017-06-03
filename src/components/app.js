@@ -15,6 +15,9 @@ let store = createStore(reducers, initialState);
 
 store.dispatch(addChatLine(1, Math.floor(Date.now() / 1000), 'Hello everyone!'));
 
+console.log(store.getState(), '???');
+console.log('hi');
+
 export default class App extends Component {
 	/** Gets fired when the route changes.
 	 *	@param {Object} event		"change" event from [preact-router](http://git.io/preact-router)

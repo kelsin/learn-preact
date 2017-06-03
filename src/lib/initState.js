@@ -1,13 +1,18 @@
 import * as Guid from 'guid';
 
+let chatroomId = Guid.create().value;
+let userId = Guid.create().value;
+
 export default {
+	chatroomId,
+	userId,
 	chatrooms: [
 		{
 			name: 'Preact Stuff',
-			id: Guid.create().value,
+			id: chatroomId,
 			chat: [],
-			userIds: []
+			userIds: [userId]
 		}
 	],
-	users: []
+	users: [{username: "default", id: userId}]
 };

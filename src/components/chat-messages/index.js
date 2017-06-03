@@ -11,20 +11,6 @@ export default class ChatMessages extends Component {
 		}
 	}
 
-	componentDidMount() {
-		// setInterval(() => {
-		// 	let newMsg = {
-		// 		sender: 'TestUser',
-		// 		body: 'TestMsg ' + (Math.random() * 10),
-		// 		timestamp: new Date()
-		// 	};
-		// 	let stateObject = clone(this.state);
-		// 	stateObject.messages.push(newMsg);
-		// 	this.setState(stateObject);
-		// 	console.log(newMsg);
-		// }, 500);
-	}
-
 	render(props, state) {
 		let messageJsx = state.messages.map((msg) => {
 			return (

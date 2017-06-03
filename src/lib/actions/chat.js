@@ -1,9 +1,10 @@
 import { ADD_CHAT_LINE, DELETE_CHAT_LINE } from './types';
 import * as Guid from 'guid';
 
-function addChatLine(sender, timestamp, body) {
+function addChatLine(chatroomId, sender, timestamp, body) {
 	return {
 		type: ADD_CHAT_LINE,
+		chatroomID,
 		sender,
 		timestamp,
 		body,
@@ -11,9 +12,10 @@ function addChatLine(sender, timestamp, body) {
 	}
 }
 
-function deleteChatLine(id) {
+function deleteChatLine(chatroomId, id) {
 	return {
 		type: DELETE_CHAT_LINE,
+		chatroomId,
 		id
 	}
 }

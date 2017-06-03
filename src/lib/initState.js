@@ -1,4 +1,11 @@
 export default {
-	chat: [],
+	chatrooms: [
+		{
+			name: '',
+			id: '',
+			chat: [],
+			userIds: []
+		}
+	],
 	users: []
 };

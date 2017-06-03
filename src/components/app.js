@@ -1,16 +1,11 @@
-import { Provider, connect } from 'preact-redux';
+import { Provider } from 'preact-redux';
 import { h, Component } from 'preact';
 import { createStore } from 'redux';
-import { Router } from 'preact-router';
 
 import reducers from '../lib/reducers';
 import initialState from '../lib/initState';
-import { addChatLine, deleteChatLine } from '../lib/actions/chat';
-import { addUser, deleteUser } from '../lib/actions/user';
 
-import Header from './header';
 import ChatContainer from './chat-container';
-import Profile from './profile';
 
 let store = createStore(reducers, initialState);
 

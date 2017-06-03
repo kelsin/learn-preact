@@ -199,7 +199,7 @@ module.exports = {
 		setImmediate: false
 	},
 
-	devtool: ENV==='production' ? 'source-map' : 'cheap-module-eval-source-map',
+	devtool: ENV === 'production' ? 'source-map' : 'cheap-module-eval-source-map',
 
 	devServer: {
 		port: process.env.PORT || 8080,
@@ -209,6 +209,10 @@ module.exports = {
 		historyApiFallback: true,
 		open: true,
 		proxy: {
+			'/api/**': {
+				'target': 'http://localhost:4000',
+				pathRewrite: path => path.replace(/^\/[^\/]+\//, '')
+			}
 			// OPTIONAL: proxy configuration:
 			// '/optional-prefix/**': { // path pattern to rewrite
 			//   target: 'http://target-host.com',

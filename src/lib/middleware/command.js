@@ -14,12 +14,13 @@ const commandMiddleware = store => next => action => {
 
 const actions = {
 	'slap': (action, target) => {
-		const newAction = { ...action };
-		newAction.messageType = 'COMMAND';
-		newAction.body = `${action.sender} slapped ${target} with a reasonably-sized trout.`;
-		return newAction;
+		return {
+			...action,
+			messageType: 'COMMAND',
+			body: `${action.sender} slapped ${target} with a reasonably-sized trout.`
+		};
 	}
-}
+};
 
 function parseCommand(string) {
 	const tokens = string.substring(1).split(' ');

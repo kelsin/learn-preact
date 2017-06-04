@@ -17,7 +17,8 @@ let chatroom = function(chatroom = {}, action) {
 							sender: action.sender,
 							timestamp: action.timestamp,
 							body: action.body,
-							id: action.id
+							id: action.id,
+							messageType: action.messageType
 						}
 					]
 				};

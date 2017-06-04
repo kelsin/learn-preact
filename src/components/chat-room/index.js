@@ -2,7 +2,13 @@ import { h, Component } from 'preact';
 import style from './style.less';
 import clone from 'lodash/clone';
 
+import ChatMessage from '../chat-message';
+
 export default class ChatRoom extends Component {
+	constructor() {
+		super();
+		this.getUsername = this.getUsername.bind(this);
+	}
 	getUsername(userId) {
 		let user = this.props.users.find(({id}) => (id === userId));
 		let username = user ? user.username : 'null';
@@ -16,11 +22,7 @@ export default class ChatRoom extends Component {
 		let messageJsx = chatroom.chat.map((msg) => {
 			console.log('ehehhhh')
 			return (
-				<div class={style.message}>
-					<div class={style.sender}>{this.getUsername(msg.sender)}</div>
-					<div class={style.body}>{msg.body}</div>
-					<div class={style.timestamp}>{msg.timestamp}</div>
-				</div>
+				<ChatMessage type={msg.messageType} msg={msg} getUsername={this.getUsername}></ChatMessage>
 			)
 		});
 

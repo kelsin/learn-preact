@@ -1,8 +1,10 @@
 import { ADD_CHAT_LINE } from '../actions/types';
 
 const commandMiddleware = store => next => action => {
+	// make sure we're only parsing commands starting with /
 	if (action.type === ADD_CHAT_LINE && action.body && action.body.charAt(0) === '/') {
 		const fnObj = parseCommand(action.body);
+		// get new action
 		if (actions.hasOwnProperty(fnObj.fn)) {
 			return next(actions[fnObj.fn](action, ...fnObj.args));
 		}

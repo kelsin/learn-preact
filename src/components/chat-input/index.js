@@ -1,8 +1,14 @@
 import { h, Component } from 'preact';
-import SocketClient from '../../lib/SocketClient';
 import style from './style.less';
 import moment from 'moment';
 
+/**
+ *
+ * TODO
+ * - dispatch send chat event and let reducer handle the rest
+ * - add bash-like shortcuts (prev, next, clear, goto-end, goto-start)
+ *
+ */
 export default class ChatInput extends Component {
 	constructor() {
 		super();
@@ -24,8 +30,10 @@ export default class ChatInput extends Component {
 	}
 
 	keyPress(event) {
-		if (event.key === "Enter") {
-			this.send();
+		switch (event.code) {
+			case 'Enter':
+				this.send();
+				break;
 		}
 	}
 

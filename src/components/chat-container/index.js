@@ -2,12 +2,19 @@ import { h, Component } from 'preact';
 import {connect} from 'preact-redux';
 import style from './style.less';
 
-import {addChatLine} from '../../lib/actions/chat';
+import SocketClient from '../../lib/SocketClient';
+import {addChatLine, addChatLineFromServer} from '../../lib/actions/chat';
 
 import ChatRoom from '../chat-room';
 import ChatInput from '../chat-input';
 
 class ChatContainer extends Component {
+	componentWillMount() {
+		SocketClient.onMessageReceived('chat message', (msg) => {
+			this.props.addChatLineFromServer(msg);
+		});
+	}
+
 	render() {
 		return (
 			<div class={style.container}>
@@ -34,8 +41,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addChatLine: (chatroomId, sender, timestamp, body) => {
-			dispatch(addChatLine(chatroomId, sender, timestamp, body));
+		addChatLine: (msg) => {
+			dispatch(addChatLine(msg));
+		},
+		addChatLineFromServer: (msg) => {
+			dispatch(addChatLineFromServer(msg));
 		}
 	}
 }

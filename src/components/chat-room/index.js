@@ -4,7 +4,9 @@ import clone from 'lodash/clone';
 
 export default class ChatRoom extends Component {
 	getUsername(userId) {
-		return this.props.users.find(({id}) => (id === userId)).username;
+		let user = this.props.users.find(({id}) => (id === userId));
+		let username = user ? user.username : 'null';
+		return username;
 	}
 	render() {
 		let chatroom = this.props.chatrooms.find((room) =>

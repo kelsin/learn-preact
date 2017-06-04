@@ -29,4 +29,8 @@ export default class ChatRoom extends Component {
 			</div>
 		);
 	}
+	componentDidUpdate() {
+		let chatroomContainer = document.querySelector('.' + style.container);
+		chatroomContainer.scrollTop = chatroomContainer.scrollHeight;
+	}
 }

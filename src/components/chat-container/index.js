@@ -5,7 +5,9 @@ import style from './style.less';
 import SocketClient from '../../lib/SocketClient';
 import {addChatLine, addChatLineFromServer} from '../../lib/actions/chat';
 
+import UsernameInput from '../username-input';
 import ChatRoom from '../chat-room';
+import ChatroomList from '../chatroom-list';
 import ChatInput from '../chat-input';
 
 class ChatContainer extends Component {
@@ -18,6 +20,12 @@ class ChatContainer extends Component {
 	render() {
 		return (
 			<div class={style.container}>
+				<div>
+					<UsernameInput />
+				</div>
+				<div class={style.chatRoomListContainer}>
+					<ChatroomList chatrooms={this.props.chatrooms}/>
+				</div>
 				<div class={style.messagesContainer}>
 					<ChatRoom chatroomId={this.props.defaultChatroom} users={this.props.users} chatrooms={this.props.chatrooms}/>
 				</div>

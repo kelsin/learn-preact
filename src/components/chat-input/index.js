@@ -15,7 +15,6 @@ export default class ChatInput extends Component {
 		this.inputChange = this.inputChange.bind(this);
 		this.send = this.send.bind(this);
 		this.keyPress = this.keyPress.bind(this);
-		this.isDisabled = this.isDisabled.bind(this);
 	}
 
 	inputChange(event) {
@@ -43,25 +42,12 @@ export default class ChatInput extends Component {
 		});
 	}
 
-	isDisabled() {
-		console.log('help');
-		if(this.props.userId !== '') {
-			this.setState({
-				disabled: false
-			});
-		} else {
-			this.setState({
-				disabled: true
-			});
-		}
-	}
-
 	render() {
 		return (
-			<div class={style.container}>
-				<input type='text' disabled={this.state.disabled} class={style.input} value={this.state.msg} onKeyPress={this.keyPress} onInput={this.inputChange} />
+				<div class={style.container}>
+				<input type='text' disabled={this.props.disabled} class={style.input} value={this.state.msg} onKeyPress={this.keyPress} onInput={this.inputChange} />
 				<button type='button' class={style.button} onClick={this.send}>Send</button>
-			</div>
+				</div>
 		);
 	}
 }

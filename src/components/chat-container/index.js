@@ -32,7 +32,7 @@ class ChatContainer extends Component {
 					<ChatRoom chatroomId={this.props.defaultChatroom} users={this.props.users} chatrooms={this.props.chatrooms}/>
 				</div>
 				<div class={style.inputContainer}>
-					<ChatInput addChatLine={this.props.addChatLine} chatroomId={this.props.defaultChatroom} userId={this.props.currentUser}/>
+					<ChatInput disabled={!this.props.currentUser} addChatLine={this.props.addChatLine} chatroomId={this.props.defaultChatroom} userId={this.props.currentUser}/>
 				</div>
 			</div>
 		);

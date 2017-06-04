@@ -51,22 +51,20 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-<<<<<<< HEAD
-		addChatLine: (chatroomId, sender, timestamp, body) => {
-			dispatch(addChatLine(chatroomId, sender, timestamp, body));
+		addChatLine: (msg) => {
+			dispatch(addChatLine(msg));
 		},
+		//addChatLine: (chatroomId, sender, timestamp, body) => {
+		//	dispatch(addChatLine(chatroomId, sender, timestamp, body));
+		//},
 		addUser: (username, id) => {
 			dispatch(addUser(username, id));
 		},
 		setCurrentUser: (userId) => {
 			dispatch(setCurrentUser(userId));
-=======
-		addChatLine: (msg) => {
-			dispatch(addChatLine(msg));
 		},
 		addChatLineFromServer: (msg) => {
 			dispatch(addChatLineFromServer(msg));
->>>>>>> 8d33ac2e4d9e1f0693d0c15cf0d10cf23cccb749
 		}
 	}
 }

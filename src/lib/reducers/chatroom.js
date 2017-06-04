@@ -8,7 +8,7 @@ import {
 let chatroom = function(chatroom = {}, action) {
 	switch (action.type) {
 		case ADD_CHAT_LINE:
-			if (chatroom.id === action.chatroomId) {
+			// if (chatroom.id === action.chatroomId) {
 				return {
 					...chatroom,
 					chat: [
@@ -21,9 +21,9 @@ let chatroom = function(chatroom = {}, action) {
 						}
 					]
 				};
-			} else {
-				return chatroom;
-			}
+			// } else {
+			// 	return chatroom;
+			// }
 		case DELETE_CHAT_LINE:
 			if (chatroom.id === action.chatroomId) {
 				let newChatroom = Object.assign({}, chatroom);

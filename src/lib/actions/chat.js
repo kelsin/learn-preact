@@ -1,15 +1,18 @@
 import { ADD_CHAT_LINE, DELETE_CHAT_LINE } from './types';
 import * as Guid from 'guid';
+import {merge} from 'lodash';
+import SocketClient from '../SocketClient';
 
-function addChatLine(chatroomId, sender, timestamp, body) {
-	return {
-		type: ADD_CHAT_LINE,
-		chatroomId,
-		sender,
-		timestamp,
-		body,
-		id: Guid.create().value
-	}
+function addChatLine(msg) {
+	msg.id = Guid.create().value;
+	SocketClient.sendMessage('chat message', msg);
+	msg.type = ADD_CHAT_LINE;
+	return msg;
+}
+
+function addChatLineFromServer(msg) {
+	msg.type = ADD_CHAT_LINE;
+	return msg;
 }
 
 function deleteChatLine(chatroomId, id) {
@@ -20,4 +23,4 @@ function deleteChatLine(chatroomId, id) {
 	}
 }
 
-export { addChatLine, deleteChatLine };
+export { addChatLine, addChatLineFromServer, deleteChatLine };

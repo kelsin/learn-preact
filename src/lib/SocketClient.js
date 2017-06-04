@@ -1,12 +1,21 @@
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:4000');
+class SocketClient {
+    constructor() {
+        this.socket = io('http://localhost:4000');
+    }
 
-const SocketClient = {
-    sendMessage(msg) {
-        console.log('SocketClient:sendMessage', msg);
-        socket.emit(msg);
+    onMessageReceived(msg, cb) {
+        this.socket.on(msg, (data) => {
+            console.log('SocketClient:onMessageReceived', msg, data);
+            cb(data);
+        });
+    }
+
+    sendMessage(msg, data) {
+        console.log('SocketClient:sendMessage', msg, data);
+        this.socket.emit(msg, data);
     }
 }
 
-export default SocketClient;
+export default new SocketClient();

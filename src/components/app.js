@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import reducers from '../lib/reducers';
 import initialState from '../lib/initState';
-import CommandMiddleware from '../lib/middleware/command';
+import CommandsMiddleware from '../lib/middleware/commands';
 
 import ChatContainer from './chat-container';
 
@@ -12,7 +12,7 @@ let store = createStore(
 	reducers,
 	initialState,
 	applyMiddleware(
-		CommandMiddleware
+		CommandsMiddleware
 	)
 );
 

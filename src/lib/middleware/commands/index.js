@@ -1,4 +1,5 @@
-import { ADD_CHAT_LINE } from '../actions/types';
+import { ADD_CHAT_LINE } from '../../actions/types';
+import * as Commands from './commands';
 
 const commandMiddleware = () /* store */ => next => action => {
 	// make sure we're only parsing commands starting with /
@@ -6,28 +7,18 @@ const commandMiddleware = () /* store */ => next => action => {
 		const {fn, args} = parseCommand(action.body);
 
 		// get new action
-		if (actions.hasOwnProperty(fn)) {
-			return next(actions[fn](action, ...args));
+		if (Commands.hasOwnProperty(fn)) {
+			return next(Commands[fn](action, ...args));
 		}
 	}
 	return next(action);
 };
 
-const actions = {
-	'slap': (action, target) => {
-		return {
-			...action,
-			messageType: 'COMMAND',
-			body: `slapped ${target} with a reasonably-sized trout.`
-		};
-	}
-};
-
-function parseCommand(string) {
+const parseCommand = (string) => {
 	const tokens = string.substring(1).split(' ');
 	const fn = tokens[0].toLowerCase();
 	const args = tokens.slice(1);
 	return { fn, args };
-}
+};
 
 module.exports = commandMiddleware;

@@ -12,6 +12,7 @@ export default class ChatRoom extends Component {
 		);
 
 		let messageJsx = chatroom.chat.map((msg) => {
+			console.log('ehehhhh')
 			return (
 				<div class={style.message}>
 					<div class={style.sender}>{this.getUsername(msg.sender)}</div>

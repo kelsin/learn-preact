@@ -1,4 +1,4 @@
-import { SET_CURRENT_CHATROOM } from './types';
+import { SET_CURRENT_CHATROOM, SET_CURRENT_USER } from './types';
 
 function setCurrentChatroom(chatroomId) {
 	return {
@@ -7,4 +7,11 @@ function setCurrentChatroom(chatroomId) {
 	}
 }
 
-export { setCurrentChatroom };
+function setCurrentUser(userId) {
+	return {
+		type: SET_CURRENT_USER,
+		userId
+	}
+}
+
+export { setCurrentChatroom, setCurrentUser };

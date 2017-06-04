@@ -1,14 +1,14 @@
 import { h, Component } from 'preact';
 import SocketClient from '../../lib/SocketClient';
 import style from './style.less';
+import * as Guid from 'guid';
 
 export default class UsernameInput extends Component {
 	constructor() {
 		super();
 
 		this.state = {
-			username: '',
-			usernameIsSet: false
+			username: ''
 		}
 
 		this.inputChange = this.inputChange.bind(this);
@@ -29,30 +29,37 @@ export default class UsernameInput extends Component {
 	}
 
 	setName() {
-		this.props.addUser(this.state.username);
+		let userId = Guid.create().value;
+		this.props.addUser(this.state.username, userId);
+		this.props.setCurrentUser(userId);
+
 		this.setState({
 			usernameIsSet: true
 		});
 	}
 
 	render() {
-		let usernameJSX = function() {
-			if(!this.state.usernameIsSet) {
-				return (
-					<div>
-						<input type='text' class={style.input} value={this.state.username} onKeyPress={this.keyPress} onInput={this.inputChange} />
-						<button type='button' class={style.button} onClick={this.setName}>Send</button>
-					</div>
-				)
+		let usernameJSX = function(){
+			console.log('help')
+			/*if(!this.state.usernameIsSet) {
+				console.log('its false');
+				return `<div>
+									<input type='text' class={style.input} value={this.state.username} onKeyPress={this.keyPress} onInput={this.inputChange} />
+									<button type='button' class={style.button} onClick={this.setName}>Send</button>
+								</div>`;
 			} else {
-				return (
-					<h3 class={style.username}>{this.state.username}</h3>
-				)
-			}
+				console.log('its true');
+				return '<h3 class={style.username}>{this.state.username}</h3>'
+			}*/
 		}
 		return (
 			<div class={style.container}>
-				{usernameJSX}
+				<h1 class={style.title}>Coolest Mothaflippin Chat</h1>
+				<div class={style.username}>{this.state.username}</div>
+				<div>
+					<input type='text' placeholder="Who are you?" class={style.input} value={this.state.username} onKeyPress={this.keyPress} onInput={this.inputChange} />
+					<button type='button' class={style.button} onClick={this.setName}>Set Username</button>
+				</div>
 			</div>
 		);
 	}

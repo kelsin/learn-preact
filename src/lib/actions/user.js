@@ -1,11 +1,11 @@
 import { ADD_USER, DELETE_USER } from './types';
 import * as Guid from 'guid';
 
-function addUser(username) {
+function addUser(username, id) {
 	return {
 		type: ADD_USER,
 		username,
-		id: Guid.create().value
+		id
 	}
 }
 

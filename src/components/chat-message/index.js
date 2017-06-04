@@ -5,13 +5,12 @@ import clone from 'lodash/clone';
 export default function ChatMessage(props) {
 	let messageClass;
 	switch (props.type) {
-		case 'COMMAND':
-			messageClass =
-			messageClass = 'command-message';
-			break;
-		default:
-			 messageClass = 'message';
-			break;
+	case 'COMMAND':
+		messageClass = 'command-message';
+		break;
+	default:
+		messageClass = 'message';
+		break;
 	}
 	return (
 		<div class={style[messageClass]}>

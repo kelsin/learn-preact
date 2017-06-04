@@ -3,10 +3,11 @@ import { ADD_CHAT_LINE } from '../actions/types';
 const commandMiddleware = () /* store */ => next => action => {
 	// make sure we're only parsing commands starting with /
 	if (action.type === ADD_CHAT_LINE && action.body && action.body.charAt(0) === '/') {
-		const fnObj = parseCommand(action.body);
+		const {fn, args} = parseCommand(action.body);
+
 		// get new action
-		if (actions.hasOwnProperty(fnObj.fn)) {
-			return next(actions[fnObj.fn](action, ...fnObj.args));
+		if (actions.hasOwnProperty(fn)) {
+			return next(actions[fn](action, ...args));
 		}
 	}
 	return next(action);
@@ -17,7 +18,7 @@ const actions = {
 		return {
 			...action,
 			messageType: 'COMMAND',
-			body: `${action.sender} slapped ${target} with a reasonably-sized trout.`
+			body: `slapped ${target} with a reasonably-sized trout.`
 		};
 	}
 };

@@ -6,6 +6,7 @@ import SocketClient from '../../lib/SocketClient';
 import {addUser} from '../../lib/actions/user';
 import {addChatLine, addChatLineFromServer} from '../../lib/actions/chat';
 import {setCurrentUser} from '../../lib/actions/context';
+import {addUserToChatroom} from '../../lib/actions/chatroom';
 
 import UsernameInput from '../username-input';
 import ChatRoom from '../chat-room';
@@ -29,7 +30,7 @@ class ChatContainer extends Component {
 					<ChatroomList chatrooms={this.props.chatrooms}/>
 				</div>
 				<div class={style.messagesContainer}>
-					<ChatRoom chatroomId={this.props.defaultChatroom} users={this.props.users} chatrooms={this.props.chatrooms}/>
+					<ChatRoom chatroomId={this.props.defaultChatroom} users={this.props.users} chatrooms={this.props.chatrooms} userId={this.props.defaultUser} addUserToChatroom={this.props.addUserToChatroom}/>
 				</div>
 				<div class={style.inputContainer}>
 					<ChatInput disabled={!this.props.currentUser} addChatLine={this.props.addChatLine} chatroomId={this.props.defaultChatroom} userId={this.props.currentUser}/>
@@ -65,6 +66,9 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		addChatLineFromServer: (msg) => {
 			dispatch(addChatLineFromServer(msg));
+		},
+		addUserToChatroom: (userId, chatroomId) => {
+			dispatch(addUserToChatroom(userId, chatroomId));
 		}
 	}
 }

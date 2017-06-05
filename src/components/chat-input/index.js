@@ -10,7 +10,6 @@ import _ from 'lodash';
  *
  * TODO
  * - dispatch send chat event and let reducer handle the rest
- * - add bash-like shortcuts (prev, next, clear, goto-end, goto-start)
  *
  */
 export default class ChatInput extends Component {
@@ -27,7 +26,13 @@ export default class ChatInput extends Component {
 
 		// chat input keybinds
 		keyjs.setContext('chat-input');
-		// bind each key to their commands
+
+		// bind keys to commands
+		keyjs.bind('enter', (e) => {
+			this.send();
+		});
+
+		// setup bash commands
 		// TODO: maybe moar magic? too much manual setup here
 		_.each(chatInputKeybinds, (command, keybind) => {
 			// get bash command fn
@@ -49,11 +54,13 @@ export default class ChatInput extends Component {
 				});
 			});
 		});
+
 		// reset context
 		keyjs.setContext('global');
 	}
 
 	onFocus(event) {
+		// set keybind context
 		keyjs.setContext('chat-input');
 	}
 

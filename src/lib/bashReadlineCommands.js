@@ -1,5 +1,6 @@
 /**
- * Bash commands for moving
+ * Bash readline commands
+ * @see: https://www.gnu.org/software/bash/manual/html_node/Bindable-Readline-Commands.html#Bindable-Readline-Commands
  *
  * TODO: put this in a library
  */

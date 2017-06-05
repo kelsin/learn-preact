@@ -3,7 +3,7 @@ import style from './style.less';
 import moment from 'moment';
 import keyjs from 'keyboardjs';
 import { chatInput as chatInputKeybinds } from '../../config/defaults/keybinds';
-import bashCommandsForMoving from '../../lib/bashCommandsForMoving';
+import bashReadlineCommands from '../../lib/bashReadlineCommands';
 import _ from 'lodash';
 
 /**
@@ -31,7 +31,7 @@ export default class ChatInput extends Component {
 		// TODO: maybe moar magic? too much manual setup here
 		_.each(chatInputKeybinds, (command, keybind) => {
 			// get bash command fn
-			const bashCommandFn = bashCommandsForMoving[command];
+			const bashCommandFn = bashReadlineCommands[command];
 			// bind to key
 			keyjs.bind(keybind, (e) => {
 				e.preventDefault();

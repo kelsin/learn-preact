@@ -1,6 +1,10 @@
 import { h, Component } from 'preact';
 import style from './style.less';
 import moment from 'moment';
+import keyjs from 'keyboardjs';
+import { chatInput as chatInputKeybinds } from '../../config/defaults/keybinds';
+import bashCommandsForMoving from '../../lib/bashCommandsForMoving';
+import _ from 'lodash';
 
 /**
  *
@@ -16,25 +20,52 @@ export default class ChatInput extends Component {
 		this.state = {
 			msg: '',
 			disabled: true
-		}
+		};
 
-		this.inputChange = this.inputChange.bind(this);
 		this.send = this.send.bind(this);
-		this.keyPress = this.keyPress.bind(this);
+		this.onInput = this.onInput.bind(this);
+
+		// chat input keybinds
+		keyjs.setContext('chat-input');
+		// bind each key to their commands
+		// TODO: maybe moar magic? too much manual setup here
+		_.each(chatInputKeybinds, (command, keybind) => {
+			// get bash command fn
+			const bashCommandFn = bashCommandsForMoving[command];
+			// bind to key
+			keyjs.bind(keybind, (e) => {
+				e.preventDefault();
+				// get bash command fn output
+				const { msg, caretStart, caretEnd } =
+					bashCommandFn(
+						this.state.msg,
+						e.target.selectionStart,
+						e.target.selectionEnd
+					);
+				// set new output
+				this.setState({ msg }, () => {
+					e.target.selectionStart = caretStart;
+					e.target.selectionEnd = caretEnd;
+				});
+			});
+		});
+		// reset context
+		keyjs.setContext('global');
 	}
 
-	inputChange(event) {
+	onFocus(event) {
+		keyjs.setContext('chat-input');
+	}
+
+	onBlur(event) {
+		// reset context
+		keyjs.setContext('global');
+	}
+
+	onInput(event) {
 		this.setState({
 			msg: event.target.value
 		});
-	}
-
-	keyPress(event) {
-		switch (event.code) {
-			case 'Enter':
-				this.send();
-				break;
-		}
 	}
 
 	send() {
@@ -53,7 +84,7 @@ export default class ChatInput extends Component {
 	render() {
 		return (
 				<div class={style.container}>
-				<input type='text' disabled={this.props.disabled} class={style.input} value={this.state.msg} onKeyPress={this.keyPress} onInput={this.inputChange} />
+				<input type='text' disabled={this.props.disabled} class={style.input} value={this.state.msg} onInput={this.onInput} onFocus={this.onFocus} onBlur={this.onBlur} />
 				<button type='button' class={style.button} onClick={this.send}>Send</button>
 				</div>
 		);

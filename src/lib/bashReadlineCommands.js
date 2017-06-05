@@ -9,6 +9,9 @@ export default {
 	'beginning-of-line': (s, caretStart, caretEnd) => {
 		return { msg: s, caretStart: 0, caretEnd: 0 };
 	},
+	'end-of-line': (s, caretStart, caretEnd) => {
+		return { msg: s, caretStart: s.length, caretEnd: s.length };
+	},
 	'unix-line-discard': (s, caretStart, caretEnd) => {
 		s = s.slice(caretStart);
 		return { msg: s, caretStart: 0, caretEnd: 0 };
